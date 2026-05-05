@@ -261,12 +261,14 @@
     }
 
     function formatarData(dataStr) {
-        const data = new Date(dataStr);
+        const [ano, mes, dia] = dataStr.split('-');
+        const data = new Date(ano, mes - 1, dia);
+    
         const diaSemana = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'][data.getDay()];
-        const dia = data.getDate().toString().padStart(2, '0');
-        const mes = (data.getMonth() + 1).toString().padStart(2, '0');
-        const ano = data.getFullYear();
-        return `${dia}/${mes}/${ano} ${diaSemana}`;
+        const diaFmt = String(dia).padStart(2, '0');
+        const mesFmt = String(mes).padStart(2, '0');
+    
+        return `${diaFmt}/${mesFmt}/${ano} ${diaSemana}`;
     }
 
     function atualizarInterface() {
